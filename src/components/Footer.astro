@@ -1,0 +1,26 @@
+---
+import Button from "./Button.astro";
+---
+
+<footer>
+  <p>Skilled</p>
+  <Button href="/courses" variant="primary" alternative={true}>
+    Get Started
+  </Button>
+</footer>
+
+<style>
+  footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-block: 2rem;
+    background: var(--secondary);
+    color: #fff;
+    margin-top: 5rem;
+  }
+  p {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+</style>

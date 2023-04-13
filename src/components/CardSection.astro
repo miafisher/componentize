@@ -1,0 +1,66 @@
+---
+import cardData from "../data/cardData.json";
+import Card from "../components/Card.astro";
+
+const { title } = Astro.props;
+---
+
+<section class="cards">
+  <header>
+    <h2>{title}</h2>
+  </header>
+
+  <ul>
+    {
+      cardData.map((data) => (
+        <Card
+          iconName={data.iconName}
+          title={data.title}
+          description={data.description}
+          href={data.link}
+        />
+      ))
+    }
+  </ul>
+</section>
+
+<style>
+  @layer components {
+    .cards {
+      --ar: 1;
+      --section-space: min(2rem, 4vmin);
+      display: grid;
+      grid-template-columns: repeat(
+        auto-fit,
+        minmax(clamp(30%, 200px, 100%), 1fr)
+      );
+      /* gap: 2rem; */
+      gap: 3rem var(--section-space);
+    }
+
+    @media (width <= 1000px) {
+      .cards {
+        --ar: revert;
+      }
+    }
+
+    header {
+      background: linear-gradient(180deg, #ff6f4b, #f329a6);
+      aspect-ratio: var(--ar);
+      padding: var(--section-space);
+      border-radius: 0.5rem;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+        0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+
+    h2 {
+      margin: 0;
+      color: #fff;
+    }
+
+    ul {
+      display: contents;
+      list-style: none;
+    }
+  }
+</style>

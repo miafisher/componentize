@@ -1,0 +1,12 @@
+@layer reset,
+components,
+theme;
+
+@import url("reset.css") layer(reset);
+@import url("tokens.css") layer(theme);
+
+body {
+    line-height: max(1.6em, 1em + 1ex);
+    color: var(--black);
+    font-family: system-ui, sans-serif;
+}

@@ -1,0 +1,32 @@
+---
+const { name, color = "#fff" } = Astro.props;
+const icons = await Astro.glob("./icons/*.astro");
+
+const IconComponent = icons.find((icon) => icon.default.name === name);
+---
+
+{
+  IconComponent ? (
+    <div class="icon" style={`--fill: ${color}`}>
+      <IconComponent.default />
+    </div>
+  ) : (
+    <p>'{name}' ikke fundet!</p>
+  )
+}
+
+<style>
+  .icon {
+    display: contents;
+    color: var(--fill);
+  }
+
+  .icon :global(svg) {
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-top: -3.25rem;
+    padding: 0.5rem;
+    border-radius: 1e5px;
+    background: var(--cta-bg);
+  }
+</style>

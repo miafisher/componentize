@@ -1,0 +1,25 @@
+---
+import Button from "./Button.astro";
+---
+
+<header>
+  <div class="logo">
+    <a href="/">skilled</a>
+  </div>
+  <Button variant="secondary" disabled>Log in</Button>
+</header>
+
+<style>
+  header {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    padding-block: 1rem;
+  }
+
+  a {
+    font-weight: 800;
+    text-decoration: none;
+    font-size: 1.5rem;
+  }
+</style>

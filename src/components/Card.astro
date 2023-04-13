@@ -1,0 +1,40 @@
+---
+const { title, description, href, iconName } = Astro.props;
+
+import Icon from "./Icon.astro";
+import Button from "./Button.astro";
+---
+
+<li>
+  {iconName && <Icon name={iconName} />}
+  <h3>{title}</h3>
+  <p>
+    {description}
+  </p>
+  <Button variant="ghost" {href}>Get started</Button>
+</li>
+
+<style>
+  @layer components {
+    li {
+      display: flex;
+      flex-flow: column;
+      gap: 1rem;
+      aspect-ratio: var(--ar);
+      /* padding: 2rem; */
+      padding: var(--section-space);
+      background: #fff;
+      border-radius: 0.5rem;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+        0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+
+    li :nth-last-child(2) {
+      margin-bottom: auto;
+    }
+
+    h3 {
+      margin: 0;
+    }
+  }
+</style>

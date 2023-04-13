@@ -1,0 +1,61 @@
+---
+const { variant = "secondary", href, ...rest } = Astro.props;
+
+const element = href ? "a" : "button";
+
+const options = {
+  a: {
+    tag: "a",
+    props: { href },
+  },
+  button: {
+    tag: "button",
+    props: { ...rest },
+  },
+};
+
+const { tag, props } = options[element];
+
+const Tag = tag;
+---
+
+<Tag data-variant={variant} {...props}>
+  <slot />
+</Tag>
+
+<style>
+  @layer components {
+    :is(a, button) {
+      all: unset;
+      font: inherit;
+      border: 0;
+      border-radius: 999px;
+      background: var(--bg);
+      padding: 0.75rem 1.5rem;
+      display: inline-block;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    [data-variant] {
+      --bg: var(--default-btn-bg);
+      text-decoration: none;
+      color: #fff;
+    }
+    [data-variant="primary"] {
+      --bg: var(--cta-bg);
+    }
+    [data-variant="primary"][data-alternative] {
+      --bg: var(--cta-bg-alternative);
+    }
+    [data-variant="secondary"] {
+      --bg: #13183e;
+    }
+    [data-variant="ghost"] {
+      color: #f329a6;
+      padding: 0;
+      background: transparent;
+    }
+  }
+</style>
